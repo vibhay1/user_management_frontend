@@ -13,18 +13,20 @@ import AddUser from './components/AddUser';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/" element={<PrivateRoute><DashboardLayout /></PrivateRoute>} >
-          <Route index={true}  element={<PrivateRoute><UserList /></PrivateRoute>} />
-          <Route path="/user/edit/:id?" element={<AdminRoute redirectPath='/'><EditUser /></AdminRoute>} />
-          <Route path="/user/add" element={<AdminRoute redirectPath='/'>< AddUser /></AdminRoute>} />
-        </Route>
+    <div>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<PrivateRoute><DashboardLayout /></PrivateRoute>} >
+            <Route index={true} element={<PrivateRoute><UserList /></PrivateRoute>} />
+            <Route path="/user/edit/:id?" element={<AdminRoute redirectPath='/'><EditUser /></AdminRoute>} />
+            <Route path="/user/add" element={<AdminRoute redirectPath='/'>< AddUser /></AdminRoute>} />
+          </Route>
 
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
