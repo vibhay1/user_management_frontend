@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loginUser } from '../redux/store';
 import { isLoggedIn } from '../authentication';
-import Loager from './Loager';
 
 const Login = () => {
-  console.log("login..")
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
@@ -31,7 +29,7 @@ const Login = () => {
     e.preventDefault();
     dispatch(loginUser(credentials));
   };
-  if (user.loading) <div>Loading...</div>;
+  if (user.loading) return <div>Loading...</div>;
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -44,9 +42,9 @@ const Login = () => {
           Sign in to your account
         </h2>
       </div>
-     
+
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      {user.error && <p className='text-rose-700 text-center'>{user.error}</p>}
+        {user.error && <p className='text-rose-700 text-center'>{user.error}</p>}
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
@@ -102,29 +100,6 @@ const Login = () => {
         </p>
       </div>
     </div>
-    // <div>
-    //   <h2 className="text-3xl font-bold underline">Login</h2>
-    //   {user.error !== null && <p>{user.error}</p>}
-    //   <form onSubmit={handleSubmit}>
-    //     <input
-    //       type="text"
-    //       name="username"
-    //       value={credentials.username}
-    //       onChange={handleChange}
-    //       placeholder="Username"
-    //     />
-    //     <input
-    //       type="password"
-    //       name="password"
-    //       value={credentials.password}
-    //       onChange={handleChange}
-    //       placeholder="Password"
-    //     />
-    //     <button type="submit" disabled={user.loading}>
-    //       {user.loading ? 'Logging in...' : 'Log In'}
-    //     </button>
-    //   </form>
-    // </div>
   );
 };
 

@@ -56,6 +56,7 @@ const Register = () => {
                 </h2>
             </div>
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                {registerState.user && <p className='text-emerald-700 text-center'>{registerState.user}</p>}
                 {registerState.error && <p className='text-rose-700 text-center'>{registerState.error}</p>}
                 {!passwordMatch && <p className='text-rose-700 text-center'>Confirm password not matched</p>}
                 <form onSubmit={handleSubmit(submitForm)} className="space-y-6">
@@ -75,15 +76,6 @@ const Register = () => {
                 </p>
             </div>
         </div>
-
-
-        // <div>Register
-        //     {registerState.error !== null && <p>{registerState.error}</p>}
-        //     <form onSubmit={handleSubmit(submitForm)}>
-        //         {renderFormField(register)}
-        //         <button type='submit' className='button'> Register</button>
-        //     </form>
-        // </div>
     )
 }
 
